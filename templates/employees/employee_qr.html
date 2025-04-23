@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>Employee QR Code</h4>
+        </div>
+        <div class="card-body text-center">
+            <h3>{{ employee.name }}</h3>
+            <p class="lead">ID: {{ employee.employee_id }}</p>
+            
+            {% if employee.qr_code %}
+                <img src="{{ employee.qr_code.url }}" alt="QR Code" class="img-fluid mb-4" style="max-width: 300px;">
+            {% else %}
+                <div class="alert alert-warning">QR Code not generated yet</div>
+            {% endif %}
+            
+            <div class="mt-4">
+                <button onclick="window.print()" class="btn btn-success">Print</button>
+                <a href="{% url 'employee-list' %}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

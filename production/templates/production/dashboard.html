@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Production Planning</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'production/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container py-4">
+    <h2>Production Planning</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Assign</button>
+    </form>
+
+    <form method="post" action="{% url 'export_sheet' %}" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Export to Google Sheets</button>
+    </form>
+
+    <hr>
+    <h4>Assignments</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Department</th>
+                <th>Employee</th>
+                <th>Start Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in assignments %}
+            <tr>
+                <td>{{ a.date }}</td>
+                <td>{{ a.department.name }}</td>
+                <td>{{ a.employee.name }}</td>
+                <td>{{ a.start_time }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No assignments found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
+<!--&lt;!&ndash; templates/production/dashboard.html &ndash;&gt;-->
+<!--{% load static %}-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Production Planning</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body class="p-4">-->
+<!--    <div class="container">-->
+<!--        <h2 class="mb-4">Production Planning Dashboard</h2>-->
+
+<!--        &lt;!&ndash; Assignment Form &ndash;&gt;-->
+<!--        <div class="card mb-4">-->
+<!--            <div class="card-header">Assign Employee to Department</div>-->
+<!--            <div class="card-body">-->
+<!--                <form method="post">-->
+<!--                    {% csrf_token %}-->
+<!--                    <div class="row g-3">-->
+<!--                        <div class="col-md-3">{{ form.department.label_tag }} {{ form.department }}</div>-->
+<!--                        <div class="col-md-3">{{ form.employee.label_tag }} {{ form.employee }}</div>-->
+<!--                        <div class="col-md-2">{{ form.date.label_tag }} {{ form.date }}</div>-->
+<!--                        <div class="col-md-2">{{ form.start_time.label_tag }} {{ form.start_time }}</div>-->
+<!--                        <div class="col-md-2 d-grid"><button type="submit" class="btn btn-primary">Assign</button></div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Assignments Table &ndash;&gt;-->
+<!--        <h4>Assignments for Today</h4>-->
+<!--        <table class="table table-bordered table-striped">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>Department</th>-->
+<!--                    <th>Employee</th>-->
+<!--                    <th>Date</th>-->
+<!--                    <th>Start Time</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for a in assignments %}-->
+<!--                <tr>-->
+<!--                    <td>{{ a.department.name }}</td>-->
+<!--                    <td>{{ a.employee.name }}</td>-->
+<!--                    <td>{{ a.date }}</td>-->
+<!--                    <td>{{ a.start_time }}</td>-->
+<!--                </tr>-->
+<!--                {% empty %}-->
+<!--                <tr><td colspan="4" class="text-center">No assignments yet.</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+<!--<form method="post" action="{% url 'export_sheet' %}">-->
+<!--    {% csrf_token %}-->
+<!--    <button type="submit" class="btn btn-outline-success mt-3">Export to Google Sheets</button>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->

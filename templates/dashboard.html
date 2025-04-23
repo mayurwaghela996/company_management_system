@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Employee Management</h5>
+                <p class="card-text">Manage employee profiles and generate QR codes for access.</p>
+                <a href="{% url 'employee-list' %}" class="btn btn-primary">Go to Employees</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Attendance Management</h5>
+                <p class="card-text">Track employee entry and exit times across facilities.</p>
+                <a href="{% url 'attendance-list' %}" class="btn btn-primary">Go to Attendance</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Production Planning</h5>
+                <p class="card-text">Manage production schedules and resources.</p>
+<!--                <a href="{% url 'production-dashboard' %}" class="btn btn-primary">Go to Production</a>-->
+                <a href="{% url 'dashboard' %}" class="btn btn-primary">Go to Production</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
