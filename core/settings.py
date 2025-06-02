@@ -28,7 +28,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ['92.67.160.159', 'localhost', '127.0.0.1', 'test_web.com']
 ALLOWED_HOSTS = [
-    'company-management-system-3-hxkn.onrender.com',
+    'company-management-system-4vkd.onrender.com',
     'localhost',  # for local development
     '127.0.0.1',
 ]
