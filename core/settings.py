@@ -13,8 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -25,7 +25,14 @@ SECRET_KEY = 'django-insecure-hzr$oh#9u0s5wvonmtl%vjmc_r%q00(osig6hi7xeq)c1nbh38
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ['92.67.160.159', 'localhost', '127.0.0.1', 'test_web.com']
+ALLOWED_HOSTS = [
+    'company-management-system-3-hxkn.onrender.com',
+    'localhost',  # for local development
+    '127.0.0.1',
+]
+
 
 
 # Application definition
@@ -45,6 +52,9 @@ INSTALLED_APPS = [
     # 'rest_framework',
     # 'crispy_forms',
     'crispy_bootstrap4',
+    'installation',
+    'maintenance',
+    'quality',
 
 ]
 
@@ -63,7 +73,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 
@@ -83,6 +93,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -97,12 +108,43 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test_django',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
+# 2. Critical My
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE' : 'django.db.backends.mysql',
+#         'NAME' : 'test_django',
+#         'USER' : 'root',
+#         'PASSWORD': '',
+#         'HOST':'127.0.0.1',
+#         'PORT':'3306',
+#         'OPTIONS':"SET sql_mode = 'STRICT_TRANS_TABLES'",
+#
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
