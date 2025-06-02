@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Production Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .tabs {
+            display: flex;
+            background: #333;
+        }
+        .tab {
+            padding: 14px 20px;
+            color: white;
+            cursor: pointer;
+            border-right: 1px solid #444;
+        }
+        .tab:hover, .tab.active {
+            background-color: #555;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: white;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tabs">
+    <div class="tab active" onclick="switchTab('dashboard')">Dashboard</div>
+    <div class="tab" onclick="switchTab('employees')">Employees</div>
+    <div class="tab" onclick="switchTab('departments')">Departments</div>
+    <div class="tab" onclick="switchTab('planning')">Production Planning</div>
+</div>
+
+<div id="dashboard" class="tab-content active">
+    <h2>Dashboard</h2>
+    <p>Summary and overview here...</p>
+</div>
+
+<div id="employees" class="tab-content">
+    <h2>Employees</h2>
+    <!-- You can render a table from your view here -->
+    {% include 'production/partials/employee_table.html' %}
+</div>
+
+<div id="departments" class="tab-content">
+    <h2>Departments</h2>
+    {% include 'production/partials/department_table.html' %}
+</div>
+
+<div id="planning" class="tab-content">
+    <h2>Production Planning</h2>
+    {% include 'production/partials/production_planning.html' %}
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+
+        document.querySelector(`.tab[onclick*="${tabId}"]`).classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>

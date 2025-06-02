@@ -1,0 +1,11 @@
+<!-- maintenance/templates/maintenance/maintenance_report_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create New Maintenance Report</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

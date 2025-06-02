@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow p-4">
+    <h2 class="mb-4">Create Maintenance Report</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Department</label>
+                {{ form.department|add_class:"form-select" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Machine</label>
+                {{ form.machine|add_class:"form-select" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Mechanic</label>
+                {{ form.mechanic|add_class:"form-select" }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Language</label>
+                {{ form.language|add_class:"form-select" }}
+            </div>
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                {{ form.description|add_class:"form-control" }}
+            </div>
+            <div class="col-12">
+                <label class="form-label">Notes</label>
+                {{ form.notes|add_class:"form-control" }}
+            </div>
+        </div>
+        <div class="text-end mt-4">
+            <button type="submit" class="btn btn-success">Save Report</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

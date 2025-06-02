@@ -25,10 +25,41 @@
             <div class="card-body">
                 <h5 class="card-title">Production Planning</h5>
                 <p class="card-text">Manage production schedules and resources.</p>
-<!--                <a href="{% url 'production-dashboard' %}" class="btn btn-primary">Go to Production</a>-->
-                <a href="{% url 'dashboard' %}" class="btn btn-primary">Go to Production</a>
+                <a href="{% url 'production-dashboard' %}" class="btn btn-primary">Go to Production</a>
             </div>
         </div>
     </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Quality Control</h5>
+                <p class="card-text">Qualty test reports, and doccuments.</p>
+                <a href="{% url 'quality' %}" class="btn btn-primary">Go to Quality</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">installation</h5>
+                <p class="card-text">Newly Installation machine.</p>
+                <a href="{% url 'installation' %}" class="btn btn-primary">Go to installation</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">maintenance Planning</h5>
+                <p class="card-text"Maintenance Planning And Report.</p>
+                <a href="{% url 'maintenance:maintenance_report_list' %}" class="btn btn-primary">Go to Maintenance</a>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}
