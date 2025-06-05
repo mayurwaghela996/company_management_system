@@ -5,4 +5,6 @@ urlpatterns = [
     path('', views.AttendanceListView.as_view(), name='attendance-list'),
     path('new/', views.AttendanceCreateView.as_view(), name='attendance-create'),
     path('report/', views.AttendanceReportView.as_view(), name='attendance-report'),
+    path('report/download/', views.generate_pdf_report, name='generate-pdf'),
+
 ]

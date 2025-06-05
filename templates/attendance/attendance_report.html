@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Attendance Report for {{ selected_date }}</h2>
+
+<!--<a href="{% url 'generate-pdf' %}?date={{ selected_date }}" class="btn btn-success mb-3">Download PDF</a>-->
+<!--<a href="{% url 'generate-pdf' %}?date={{ selected_date }}" class="btn btn-success mb-3">Download PDF</a>-->
+<a href="{% url 'generate-pdf' %}?date={{ selected_date }}" class="btn btn-success mb-3">Download PDF</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Employee</th>
+            <th>In 1</th>
+            <th>Out 1</th>
+            <th>In 2</th>
+            <th>Out 2</th>
+            <th>In 3</th>
+            <th>Out 3</th>
+            <th>In 4</th>
+            <th>Out 4</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in object_list %}
+        <tr>
+            <td>{{ record.employee.name }}</td>
+            <td>{{ record.in_1|default:"-" }}</td>
+            <td>{{ record.out_1|default:"-" }}</td>
+            <td>{{ record.in_2|default:"-" }}</td>
+            <td>{{ record.out_2|default:"-" }}</td>
+            <td>{{ record.in_3|default:"-" }}</td>
+            <td>{{ record.out_3|default:"-" }}</td>
+            <td>{{ record.in_4|default:"-" }}</td>
+            <td>{{ record.out_4|default:"-" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="9" class="text-center">No records found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
